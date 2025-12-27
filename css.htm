@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS Interactive Learning Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+
+html,body{height:100%;margin:0}
+
+body{
+display:flex;
+flex-direction:column;
+background:linear-gradient(to right,aliceblue,lavenderblush)
+}
+
+header{
+display:grid;
+grid-template-columns:auto 1fr auto;
+align-items:center;
+padding:14px 24px;
+background:linear-gradient(45deg,orange,white,green);
+box-shadow:0 4px 12px rgba(0,0,0,.3)
+}
+
+header img{height:52px;cursor:pointer}
+
+header h1{
+margin:0;
+text-align:center;
+font-size:30px;
+letter-spacing:2px;
+background:linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet);
+background-size:400%;
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+animation:titleFlow 6s linear infinite;
+font-weight:bold
+}
+
+@keyframes titleFlow{
+0%{background-position:0%}
+100%{background-position:400%}
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:12px;
+padding:14px;
+background:linear-gradient(to right,lightgoldenrodyellow,peachpuff);
+border-bottom:4px solid darkorange
+}
+
+nav button{
+padding:10px 18px;
+border:none;
+border-radius:25px;
+background:linear-gradient(135deg,tomato,coral);
+color:white;
+cursor:pointer;
+font-size:15px;
+font-weight:bold;
+box-shadow:0 3px 8px rgba(0,0,0,.25);
+transition:.25s
+}
+
+nav button:hover{transform:translateY(-2px) scale(1.05)}
+
+nav button.active{
+background:linear-gradient(135deg,mediumseagreen,seagreen);
+box-shadow:0 0 12px rgba(0,128,0,.8)
+}
+
+.top-bar{
+text-align:right;
+padding:8px 16px;
+background:linear-gradient(to right,aliceblue,lavender)
+}
+
+.top-bar button{
+padding:8px 18px;
+border:none;
+border-radius:20px;
+background:linear-gradient(135deg,slateblue,mediumslateblue);
+color:white;
+font-weight:bold;
+cursor:pointer
+}
+
+main{
+flex:1;
+padding:14px
+}
+
+#frameContainer{
+width:100%;
+height:100%
+}
+
+iframe{
+width:125%;
+height:125%;
+border:5px solid dodgerblue;
+border-radius:12px;
+background:white;
+box-shadow:0 6px 16px rgba(0,0,0,.25);
+transform:scale(.8);
+transform-origin:top left
+}
+
+footer{
+text-align:center;
+padding:14px;
+background:linear-gradient(135deg,mediumvioletred,deeppink);
+color:white;
+font-size:15px;
+font-weight:bold;
+letter-spacing:1px;
+box-shadow:0 -4px 12px rgba(0,0,0,.3)
+}
+
+footer a{
+color:white;
+text-decoration:none
+}
+
+footer a:hover{
+text-decoration:none;
+background: cyan;
+color: red;
+
+}
+
+:fullscreen header,
+:fullscreen nav,
+:fullscreen .top-bar,
+:fullscreen footer{
+display:none
+}
+
+:fullscreen main{
+padding:0
+}
+
+:fullscreen iframe{
+width:100%;
+height:100%;
+transform:scale(1);
+border-radius:0
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<a href="https://www.saveetha.ac.in" target="_blank">
+<img src="logo.png" alt="Saveetha Engineering College" title="Saveetha Engineering College">
+</a>
+
+<h1 style="justify-self:start;margin-left:280px;">CSS Interactive Learning Hub</h1>
+
+<img src="silver.png">
+</header>
+
+
+<nav>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Selectors')">Selectors</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Pseudo')">Pseudo</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Background')">Background</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Text_Font_Styling')">Text & Font</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_TextEffects')">Text Effects</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Border')">Border</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Box_Model')">Box Model</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Position')">Position</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Flexbox')">Flexbox</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Transform')">Transform</button>
+<button onclick="loadPage(this,'https://selvasachein.github.io/CSS_Animations')">Animations</button>
+</nav>
+
+<div class="top-bar">
+<button onclick="toggleFullscreen()">Fullscreen</button>
+</div>
+
+<main>
+<div id="frameContainer">
+<iframe id="contentFrame"></iframe>
+</div>
+</main>
+
+<footer>
+Designed & Developed by
+<a href="https://in.linkedin.com/in/dr-r-selvakumar-361100299" target="_blank">
+Dr.R.Selvakumar
+</a>
+© 2025 CSS Interactive Learning • Learn • Practice • Master
+</footer>
+
+<script>
+function loadPage(btn,url){
+document.getElementById("contentFrame").src=url;
+window.scrollTo(0,0);
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+}
+
+function toggleFullscreen(){
+const el=document.getElementById("frameContainer");
+if(!document.fullscreenElement){
+el.requestFullscreen();
+}else{
+document.exitFullscreen();
+}
+}
+</script>
+
+</body>
+</html>
